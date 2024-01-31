@@ -11,28 +11,9 @@ export default{
       },
       closeModal(){
         this.modalProduct.hide()
-      },updateProduct(){
-
-        let http="post"
-        let web=`${this.url}/api/${this.path}/admin/product`
-        
-        if(!this.isNew){
-          http="put"
-          web=`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`
-        }
-      
-        axios[http](web,{data:this.tempProduct}).then((res)=>{
-          console.log(res)
-          // productModal.hide()
-          this.$refs.pModal.closeModal()
-          this.getProduct()
-        }).catch((error)=>{
-          console.log(error)
-        })
-       }
-       ,
+      },
     },
-    template:`  <div id="productModal" ref="modal" class="modal fade" tabindex="-1" aria-labelledby="productModalLabel"
+    template:`  <div id="productModal" ref="productModal" class="modal fade" tabindex="-1" aria-labelledby="productModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content border-0">
@@ -54,8 +35,9 @@ export default{
               <div v-if="Array.isArray(tempProduct.imagesUrl)">
                 <div class="mb-1" v-for="(image, key) in tempProduct.imagesUrl" :key="key">
                   <div class="form-group">
-                    <label :for="imagesUrl${key}" class="form-label">圖片網址</label>
-                    <input :id="imagesUrl${key}" v-model="tempProduct.imagesUrl[key]" type="text" class="form-control"
+                    <label :for="
+                    imagesUrl[key]" class="form-label">圖片網址</label>
+                    <input :id="imagesUrl[key]" v-model="tempProduct.imagesUrl[key]" type="text" class="form-control"
                       placeholder="請輸入圖片連結">
                   </div>
                   <img class="img-fluid" :src="image">

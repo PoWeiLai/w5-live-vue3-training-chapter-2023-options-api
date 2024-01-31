@@ -163,7 +163,7 @@ import {createApp} from "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
 
 import pagination from "./pagination.js"
 import productModal from "./productModal.js"
-
+import delProductModal from "./delProductModal.js"
 
 
 const app=createApp({
