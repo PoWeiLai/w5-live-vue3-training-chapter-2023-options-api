@@ -127,15 +127,12 @@ export default{
     </div>
   </div>
 
-    `, createImages(){
-      this.tempProduct.imagesUrl=[]
-      this.tempProduct.imagesUrl.push("")
-    },
+    `, 
    
     mounted(){
       
       this.modalProduct=new bootstrap.Modal(this.$refs.productModal)
-      this.modalProduct.show()
+   
       
     }
   

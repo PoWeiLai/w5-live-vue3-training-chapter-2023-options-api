@@ -66,18 +66,17 @@
           </tr>
         </tbody>
       </table>
- 
+
       <!-- 分頁元件 -->
    <pagination :pages="pages" :get-product="getProduct"></pagination>
       <!-- 分頁元件 -->
     </div>
     <!-- Modal -->
   <product-modal :temp-product="tempProduct" :update-product="updateProduct" ref="pModal"></product-modal>
-  <del-product-modal :temp-product="tempProduct" ref="dModal"></del-product-modal>
+  <del-product-modal :item="tempProduct" ref="dModal"></del-product-modal>
     <!-- Modal -->
   </div>
 
- 
 
 
     

@@ -166,6 +166,7 @@ import productModal from "./productModal.js"
 import delProductModal from "./delProductModal.js"
 
 
+
 const app=createApp({
 data(){
 return{
@@ -177,7 +178,8 @@ return{
    products:[],
    pages:{},
    isNew:false,
-
+   modalProduct:null,
+   productDel:null
 }
 },
 mounted(){ //元件週期，token可以進入到cookie紀錄裡，然後也可以取出cookie紀錄
@@ -187,7 +189,7 @@ mounted(){ //元件週期，token可以進入到cookie紀錄裡，然後也可�
       "$1",
     );    
    axios.defaults.headers.common.Authorization = token;
-   this.checkAdmin()
+   this.getProduct()
 
 }
 ,components:{
@@ -211,10 +213,34 @@ window.location="login.html"
   axios.delete(`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`).then((res)=>{
     console.log(res)
     // delProductModal.hide()
-    this.$refs.dModal.closeModal()
     this.getProduct()
+    this.$refs.dModal.closeModal()
+    this.tempProduct={}
   }).catch((error)=>{console.log(error)})
- },
+ },   updateProduct(){
+
+          let http="post"
+          let web=`${this.url}/api/${this.path}/admin/product`
+          
+          if(!this.isNew){
+            http="put"
+            web=`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`
+          }
+        
+          axios[http](web,{data:this.tempProduct}).then((res)=>{
+            console.log(res)
+            // productModal.hide()
+            this.getProduct()
+            this.$refs.pModal.closeModal()
+            this.tempProduct={}
+          }).catch((error)=>{
+            console.log(error)
+          })
+         },createImages(){
+          this.tempProduct.imagesUrl=[]
+          this.tempProduct.imagesUrl.push("")
+         },
+         
 
  getProduct(page=1){
   axios.get(`${this.url}/api/${this.path}/admin/products?page=${page}`).then((res)=>{
@@ -224,26 +250,7 @@ window.location="login.html"
   }).catch((error)=>{console.log(error)})
  }
  ,
- updateProduct(){
 
-  let http="post"
-  let web=`${this.url}/api/${this.path}/admin/product`
-  
-  if(!this.isNew){
-    http="put"
-    web=`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`
-  }
-
-  axios[http](web,{data:this.tempProduct}).then((res)=>{
-    console.log(res)
-    // productModal.hide()
-    this.$refs.pModal.closeModal()
-    this.getProduct()
-  }).catch((error)=>{
-    console.log(error)
-  })
- }
- ,
  openModal(isNew,item){
   if(isNew=="new"){
 
@@ -265,10 +272,7 @@ window.location="login.html"
     this.$refs.dModal.openModal()
   }
  },
- createImages(){
-   this.tempProduct.imagesUrl=[]
-   this.tempProduct.imagesUrl.push("")
- }
+
 
 },
 

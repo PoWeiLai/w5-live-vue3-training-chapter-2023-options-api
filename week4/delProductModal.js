@@ -3,7 +3,7 @@ export default {
         return{
             productDel:null
         }
-    },props:[' tempProduct'],
+    },props:['item'],
     template:`
     <div id="delProductModal" ref="delProductModal" class="modal fade" tabindex="-1"
     aria-labelledby="delProductModalLabel" aria-hidden="true">
@@ -23,7 +23,7 @@ export default {
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-danger" @click="delProductModal">
+          <button type="button" class="btn btn-danger" @click="item">
             確認刪除
           </button>
         </div>
@@ -41,6 +41,6 @@ export default {
     },
     mounted(){
         this.productDel=new bootstrap.Modal(this.$refs.delProductModal)
-        this.productDel.show()
+      
     }
 }
