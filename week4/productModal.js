@@ -35,9 +35,8 @@ export default{
               <div v-if="Array.isArray(tempProduct.imagesUrl)">
                 <div class="mb-1" v-for="(image, key) in tempProduct.imagesUrl" :key="key">
                   <div class="form-group">
-                    <label :for="
-                    imagesUrl[key]" class="form-label">圖片網址</label>
-                    <input :id="imagesUrl[key]" v-model="tempProduct.imagesUrl[key]" type="text" class="form-control"
+                    <label :for="'imagesUrl' + key" class="form-label">圖片網址</label>
+                    <input :id="'imagesUrl' + key" v-model="tempProduct.imagesUrl[key]" type="text" class="form-control"
                       placeholder="請輸入圖片連結">
                   </div>
                   <img class="img-fluid" :src="image">

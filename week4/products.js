@@ -166,7 +166,6 @@ import productModal from "./productModal.js"
 import delProductModal from "./delProductModal.js"
 
 
-
 const app=createApp({
 data(){
 return{
@@ -178,8 +177,7 @@ return{
    products:[],
    pages:{},
    isNew:false,
-   modalProduct:null,
-   productDel:null
+
 }
 },
 mounted(){ //元件週期，token可以進入到cookie紀錄裡，然後也可以取出cookie紀錄
@@ -189,7 +187,8 @@ mounted(){ //元件週期，token可以進入到cookie紀錄裡，然後也可�
       "$1",
     );    
    axios.defaults.headers.common.Authorization = token;
-   this.getProduct()
+   this. checkAdmin()
+
 
 }
 ,components:{
@@ -212,8 +211,9 @@ window.location="login.html"
  },  delProductModal(){
   axios.delete(`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`).then((res)=>{
     console.log(res)
-    // delProductModal.hide()
+
     this.getProduct()
+    // productDel.hide()
     this.$refs.dModal.closeModal()
     this.tempProduct={}
   }).catch((error)=>{console.log(error)})
@@ -229,8 +229,9 @@ window.location="login.html"
         
           axios[http](web,{data:this.tempProduct}).then((res)=>{
             console.log(res)
-            // productModal.hide()
+           
             this.getProduct()
+            // modalProduct.hide()
             this.$refs.pModal.closeModal()
             this.tempProduct={}
           }).catch((error)=>{
@@ -258,17 +259,17 @@ window.location="login.html"
       imagesUrl:[]
     }
     this.isNew=true
-    // productModal.show()
+    // modalProduct.show()
     this.$refs.pModal.openModal()
 
   }else if(isNew=="edit"){
     this.tempProduct={...item}
     this.isNew=false
-    // productModal.show()
+    // modalProduct.show()
     this.$refs.pModal.openModal()
   }else if(isNew=="delete"){
     this.tempProduct={...item}
-    // delProductModal.show()
+    // productDel.show()
     this.$refs.dModal.openModal()
   }
  },
