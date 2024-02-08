@@ -68,12 +68,12 @@
       </table>
 
       <!-- 分頁元件 -->
-   <pagination :pages="pages" :get-product="getProduct"></pagination>
+   <pagination :pages="pages" :get-product="getProduct" :is-new="isNew" :create-images="createImages"></pagination>
       <!-- 分頁元件 -->
     </div>
     <!-- Modal -->
   <product-modal :temp-product="tempProduct" :update-product="updateProduct"  ref="pModal"></product-modal>
-  <!-- <del-product-modal :item="tempProduct" ref="dModal"></del-product-modal> -->
+  <del-product-modal :item="tempProduct" ref="dModal"></del-product-modal>
     <!-- Modal -->
 
   </div>

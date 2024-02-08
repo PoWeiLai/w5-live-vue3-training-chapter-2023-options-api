@@ -163,7 +163,7 @@ import {createApp} from "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
 
 import pagination from "./pagination.js"
 import productModal from "./productModal.js"
-// import delProductModal from "./delProductModal.js"
+import delProductModal from "./delProductModal.js"
 
 
 const app=createApp({
@@ -194,7 +194,7 @@ mounted(){ //元件週期，token可以進入到cookie紀錄裡，然後也可�
 ,components:{
   pagination,
   productModal,
-  // delProductModal,
+  delProductModal,
  }
  ,
 methods:{
