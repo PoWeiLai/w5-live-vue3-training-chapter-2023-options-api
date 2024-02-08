@@ -127,7 +127,7 @@ const app = createApp({
   mounted() { //元件週期，token可以進入到cookie紀錄裡，然後也可以取出cookie紀錄
 
     const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)hasVueToken\s*\=\s*([^;]*).*$)|^.*$/,
+      /(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,
       "$1",
     );
     axios.defaults.headers.common.Authorization = token;
