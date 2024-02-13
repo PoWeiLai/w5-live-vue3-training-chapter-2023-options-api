@@ -48,7 +48,7 @@ export default{
                     新增圖片
                   </button>
                 </div>
-                <div v-else-if>
+                <div>
                   <button class="btn btn-outline-danger btn-sm d-block w-100" @click="tempProduct.imagesUrl.pop()">
                     刪除圖片
                   </button>

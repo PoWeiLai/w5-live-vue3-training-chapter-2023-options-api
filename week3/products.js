@@ -167,17 +167,19 @@ const app = createApp({
         productDel.hide()
         // this.$refs.dModal.closeModal()
         this.tempProduct = {}
+        console.log(this.tempProduct)
       }).catch((error) => { console.log(error) })
     }, updateProduct() {
 
       let http = "post"
       let web = `${this.url}/api/${this.path}/admin/product`
-
+  console.log(http)
+  console.log(web)
       if (!this.isNew) {
         http = "put"
         web = `${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`
       }
-
+    
       axios[http](web, { data: this.tempProduct }).then((res) => {
         console.log(res)
 

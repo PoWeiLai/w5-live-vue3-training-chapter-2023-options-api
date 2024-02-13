@@ -208,7 +208,8 @@ window.location="login.html"
 }
   
   )
- },  delProductModal(){
+ },  
+ delProductModal(){
   axios.delete(`${this.url}/api/${this.path}/admin/product/${this.tempProduct.id}`).then((res)=>{
     console.log(res)
 
@@ -217,7 +218,8 @@ window.location="login.html"
     this.$refs.dModal.closeModal()
     this.tempProduct={}
   }).catch((error)=>{console.log(error)})
- },   updateProduct(){
+ },  
+  updateProduct(){
 
           let http="post"
           let web=`${this.url}/api/${this.path}/admin/product`
