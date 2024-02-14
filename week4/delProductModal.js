@@ -3,10 +3,10 @@ export default {
         return{
             productDel:null
         }
-    },props:['tempProduct'],
+    },props:['tempProduct','delProductModal'],
     template:`
     <div id="delProductModal" ref="delProductModal" class="modal fade" tabindex="-1"
-    // aria-labelledby="delProductModalLabel" aria-hidden="true">
+     aria-labelledby="delProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content border-0">
         <div class="modal-header bg-danger text-white">
