@@ -12,6 +12,7 @@ methods:{
     getProducts(){
         axios.get(`${apiUrl}/api/${apiName}/products/all`).then(res=>{
             console.log(res)
+            
         }).catch(error=>{
             alert("錯誤")
         })
