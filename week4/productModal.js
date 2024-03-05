@@ -4,7 +4,7 @@ export default{
      modalProduct:null
     }
   },
-    props:["tempProduct","updateProduct","isNew","createImages"],
+    props:["tempProduct","updateProduct"],
     methods:{
       openModal(){
         this.modalProduct.show()

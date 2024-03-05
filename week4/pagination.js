@@ -9,7 +9,8 @@ export default{
        <span aria-hidden="true">&laquo;</span>
      </a>
    </li>
-   <li class="page-item" v-for="page in pages.total_pages" :key="page+123" :class="{active:page===pages.current_page}"><a class="page-link" href="#"  @click.prevent="getProduct(page)">{{page}}</a></li>
+   <li class="page-item" v-for="page in pages.total_pages" :key="page+123" :class="{active:page===pages.current_page}">
+   <a class="page-link" href="#"  @click.prevent="getProduct(page)">{{page}}</a></li>
  
    <li class="page-item" :class="{disabled:!pages.has_next}"> 
      <a class="page-link" href="#" aria-label="Next"  @click.prevent="getProduct(pages.current_page+1)">
