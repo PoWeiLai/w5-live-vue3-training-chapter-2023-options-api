@@ -118,39 +118,39 @@
         </table>
       </div>
       <div class="my-5 row justify-content-center">
-        <v-form ref="form" class="col-md-6" v-slot="{ errors }" >
+        <v-form ref="form" class="col-md-6" v-slot="{ errors }" @sumbit="sendTo">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <v-field id="email" name="email" type="email" class="form-control"
-              placeholder="請輸入 Email" rules="email|required"
+              placeholder="請輸入 Email" rules="email|required" :class="{'is-invaild=error['email']'}" v-model="form.user.email"
              ></v-field>
             <error-message name="email" class="invalid-feedback"></error-message>
           </div>
 
           <div class="mb-3">
             <label for="name" class="form-label">收件人姓名</label>
-            <v-field id="name" name="姓名" type="text" class="form-control"
-              placeholder="請輸入姓名" rules="required" ></v-field>
+            <v-field id="name" name="姓名" type="text" class="form-control" 
+              placeholder="請輸入姓名" rules="required" :class="{'is-invaild':error['姓名']}" v-model="form.user.name" ></v-field>
             <error-message name="姓名" class="invalid-feedback"></error-message>
           </div>
 
           <div class="mb-3">
             <label for="tel" class="form-label">收件人電話</label>
             <v-field id="tel" name="電話" type="text" class="form-control"
-              placeholder="請輸入電話" rules="required|min:8|max:10" v-model="form.user.tel"></v-field>
+              placeholder="請輸入電話" rules="required|min:8|max:10" :class="{'is-invaild':error['電話']}" v-model="form.user.tel"></v-field>
             <error-message name="電話" class="invalid-feedback"></error-message>
           </div>
 
           <div class="mb-3">
             <label for="address" class="form-label">收件人地址</label>
             <v-field id="address" name="地址" type="text" class="form-control"
-              placeholder="請輸入地址" rules="required"></v-field>
+              placeholder="請輸入地址" rules="required" :class="{'is-invaild':error['收件人地址']}" v-model="form.user.address"></v-field>
             <error-message name="地址" class="invalid-feedback"></error-message>
           </div>
 
           <div class="mb-3">
             <label for="message" class="form-label">留言</label>
-            <textarea name="" id="message" class="form-control" cols="30" rows="10"></textarea>
+            <textarea name="" id="message" class="form-control" cols="30" rows="10" :class="{'is-invaild':error['留言']}" v-model="form.user.message"></textarea>
           </div>
           <div class="text-end">
             <button type="submit" class="btn btn-danger">送出訂單</button>
@@ -203,7 +203,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+<script src="https://github.com/logaretm/vee-validate/blob/vee-validate%404.1.16/packages/i18n/src/locale/zh_TW.json"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://unpkg.com/vee-validate@next"></script>
   <script src="https://unpkg.com/@vee-validate/i18n@4.1.0"></script>
