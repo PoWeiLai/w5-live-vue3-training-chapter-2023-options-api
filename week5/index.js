@@ -93,8 +93,9 @@ const app = createApp({
             this.tempProduct = product
             this.$refs.userModal.open()
         },
-        //addToCart(qty=1,product_id){const order={ product_id,
-        //   qty}......}
+
+        //8. 為何我addToCart(qty=1,product_id)裡面兩個參數順序和{const order={ product_id,
+        //   qty}......}裡面參數順序不一樣就會出現錯誤?我後來是改正但是就不理解為何參數順序不對就無法顯示
         addToCart(product_id, qty = 1) {
             const order = {
                 product_id,
@@ -126,6 +127,22 @@ const app = createApp({
             axios.put(`${this.apiUrl}/api/${this.apiName}/cart/${item.id}`,{data:modify}).then(res=>{
                 console.log(res)
                 this.status.changeLoading = ""
+                this.getCart()
+            })
+        },
+        removeCart(id){  //7.為何這個不是this.status.changeLoading = item.id?而且  removeCart(id)為何不是removeCart(item,id)或是removeCart(item.id)??
+            this.status.changeLoading = id
+
+            axios.delete(`${this.apiUrl}/api/${this.apiName}/cart/${id}`).then(res=>{
+                console.log(res)
+                this.getCart()
+                this.status.changeLoading = ""
+            })
+        },
+        removeAllCart(){
+
+            axios.delete(`${this.apiUrl}/api/${this.apiName}/carts`).then(res=>{
+                console.log(res)
                 this.getCart()
             })
         }

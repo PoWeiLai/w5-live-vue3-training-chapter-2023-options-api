@@ -47,9 +47,9 @@
               </td>
               <td>
                 <div class="btn-group btn-group-sm">
-                  <button type="button" class="btn btn-outline-secondary"
+                  <button type="button" class="btn btn-outline-secondary" 
                   @click="openModal(product)">
-                    <i class="fas fa-spinner fa-pulse"></i>
+
                     查看更多
                   </button>
                   <button type="button" class="btn btn-outline-danger" :disabled="product.id==status.cartLoading"
@@ -64,7 +64,8 @@
         </table>
         <!-- 購物車列表 -->
         <div class="text-end">
-          <button class="btn btn-outline-danger" type="button">清空購物車</button>
+          <button class="btn btn-outline-danger" type="button" @click="removeAllCart()">
+            清空購物車</button>
         </div>
         <table class="table align-middle">
           <thead>
@@ -76,12 +77,12 @@
             </tr>
           </thead>
           <tbody>
-         <!--<template> //3.為何這個註解才會顯示?-->   
+         <!--<template> //3.為何這個template註解網頁上購物車才會顯示?-->   
               <tr v-for="cart in carts.carts" :key="cart.id">
                 <td>
                   <button type="button" class="btn btn-outline-danger btn-sm"
-                   >
-                    <i class="fas fa-spinner fa-pulse"></i>
+                   @click="removeCart(cart.id)" :disabled="status.changeLoading==cart.id">
+                   <span class="spinner-border spinner-border-sm" aria-hidden="true" v-if="cart.id==status.changeLoading"></span>
                     x
                   </button>
                 </td>
@@ -93,11 +94,11 @@
                 </td>
                 <td>
                   <div class="input-group input-group-sm">
-                    <div class="input-group mb-3">  <!--5.change是甚麼用法?-->
-                      <button type="button" @click="cart.qty--;changeCart(cart,cart.qty)">-</button>
+                    <div class="input-group mb-3">  <!--5.原本在input裡為何是@change而不是@click??後來左右兩邊加上button然後就用@click?為何"cart.qty--;changeCart(cart,cart.qty)"，cart.qty和changeCart..中間是用;隔開?而changeCart沒有用@change包起來?-->
+                      <button type="button" :disabled="cart.qty==1" @click="cart.qty--;changeCart(cart,cart.qty)">-</button>
                       <input  min="1" type="number" class="form-control" v-model="cart.qty" :disable="cart.id==status.changeLoading" >
                       <button type="button" @click="cart.qty++;changeCart(cart,cart.qty)">+</button>
-                      <span class="input-group-text" id="basic-addon2">{{}}</span>
+  
                     </div>
                   </div>
                 </td>
